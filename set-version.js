@@ -1,6 +1,6 @@
-const versionStringRx = /\d+(\.\d+){2,}/ig;
-
 let setVersion = function (fileContent, version, buildNumberOnly = false) {
+  const versionStringRx = /\d+(\.\d+){2,}/ig;
+
   console.log('>>>>>>>>>>>>>> running setVersion with', version, buildNumberOnly);
 
   if (!buildNumberOnly) {
