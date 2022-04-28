@@ -5,39 +5,50 @@ const path = require('path');
 const fs = require('fs');
 
 test('setVersion works', () => {
-  expect(setVersion(fs.readFileSync('./fixtures/Cargo.toml').toString(), '0.24.4778923')).toEqual(
-    fs.readFileSync('./fixtures/Cargo.patched.toml').toString()
-  );
+  expect(setVersion(fs.readFileSync('./fixtures/Cargo.toml').toString(), '0.24.4778923')).toEqual({
+    content: fs.readFileSync('./fixtures/Cargo.patched.toml').toString(),
+    version: '0.24.4778923'
+  });
 
   expect(setVersion(`
 version = "0.24.0"
-`, '1.0.1', false)).toEqual(`
+`, '1.0.1', false)).toEqual({
+  content: `
 version = "1.0.1"
-`);
+`, version: '1.0.1' 
+});
 
   expect(setVersion(`
 version = "0.24.0"
-`, '0.24.4778923')).toEqual(`
+`, '0.24.4778923')).toEqual({
+  content: `
 version = "0.24.4778923"
-`);
+`, version: '0.24.4778923'
+});
 
   expect(setVersion(`
 version = "0.24.4778923"
-`, '0.24.0')).toEqual(`
+`, '0.24.0')).toEqual({
+  content: `
 version = "0.24.0"
-`);
+`, version: '0.24.0'
+});
 
   expect(setVersion(`
 version="0.24.0"
-`, '0.24.4778923')).toEqual(`
+`, '0.24.4778923')).toEqual({
+  content: `
 version="0.24.4778923"
-`);
+`, version: '0.24.4778923'
+});
 
 expect(setVersion(`
 version="0.24.0"
-`, '4778923', true)).toEqual(`
+`, '4778923', true)).toEqual({
+  content: `
 version="0.24.4778923"
-`);
+`, version: '0.24.4778923'
+});
 });
 
 test('setVersion throws when version string is invalid', () => {
