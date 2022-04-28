@@ -1849,7 +1849,7 @@ exports.debug = debug; // for test
 /***/ 212:
 /***/ ((module) => {
 
-let setVersion = function (fileContent, version, buildNumberOnly = false) {
+let setVersion = function (fileContent, version, buildNumberOnly) {
   const versionStringRx = /\d+(\.\d+){2,}/ig;
 
   console.log('>>>>>>>>>>>>>> running setVersion with', version, buildNumberOnly);
