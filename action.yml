@@ -9,6 +9,10 @@ inputs:
     description: "if true, only update build number"
     required: false
     default: false
+  overwriteCargoFile:
+    description: "if true, overwrites target cargo file"
+    required: false
+    default: false
   version:
     description: "version string"
     required: true
