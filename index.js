@@ -8,6 +8,7 @@ async function run() {
     const cargoFile = core.getInput('cargoFile');
     const version = core.getInput('version');
     const buildNumberOnly = core.getInput('buildNumberOnly');
+    core.info(`Running with ${cargoFile} ${version} ${buildNumberOnly}`);
     core.setOutput('content', setVersion(fs.readFileSync(cargoFile).toString(), version, buildNumberOnly));
   } catch (error) {
     core.setFailed(error.message);
