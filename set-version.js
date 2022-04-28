@@ -8,6 +8,7 @@ let setVersion = function (fileContent, version, buildNumberOnly = false) {
       throw new Error('Invalid version string');
     }
   } else {
+    console.log('>>>>>>>>>>>>>>>> match on version', version.match(/^[0-9]+$/ig));
     if (!version || !version.match(/^[0-9]+$/ig)) {
       throw new Error('Invalid version string');
     }
