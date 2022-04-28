@@ -1849,9 +1849,9 @@ exports.debug = debug; // for test
 /***/ 212:
 /***/ ((module) => {
 
-const versionStringRx = /\d+(\.\d+){2,}/ig;
-
 let setVersion = function (fileContent, version, buildNumberOnly = false) {
+  const versionStringRx = /\d+(\.\d+){2,}/ig;
+
   console.log('>>>>>>>>>>>>>> running setVersion with', version, buildNumberOnly);
 
   if (!buildNumberOnly) {
@@ -1859,6 +1859,7 @@ let setVersion = function (fileContent, version, buildNumberOnly = false) {
       throw new Error('Invalid version string');
     }
   } else {
+    console.log('>>>>>>>>>>>>>>>> match on version', version.match(/^[0-9]+$/ig));
     if (!version || !version.match(/^[0-9]+$/ig)) {
       throw new Error('Invalid version string');
     }
