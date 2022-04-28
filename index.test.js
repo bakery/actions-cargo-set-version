@@ -26,6 +26,12 @@ version="0.24.0"
 `, '0.24.4778923')).toEqual(`
 version="0.24.4778923"
 `);
+
+expect(setVersion(`
+version="0.24.0"
+`, '4778923', true)).toEqual(`
+version="0.24.4778923"
+`);
 });
 
 test('setVersion throws when version string is invalid', () => {

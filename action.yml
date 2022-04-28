@@ -5,6 +5,10 @@ inputs:
     description: "cargo file location"
     required: true
     default: "Cargo.toml"
+  buildNumberOnly:
+    description: "if true, only update build number"
+    required: false
+    default: false
   version:
     description: "version string"
     required: true
