@@ -2,7 +2,7 @@ name: "Cargo set version"
 description: "Updates package version of the cargo file"
 inputs:
   cargoFile:
-    description: "number of milliseconds to wait"
+    description: "cargo file location"
     required: true
     default: "Cargo.toml"
   version:

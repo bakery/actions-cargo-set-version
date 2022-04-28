@@ -1846,10 +1846,26 @@ exports.debug = debug; // for test
 
 /***/ }),
 
-/***/ 653:
+/***/ 212:
 /***/ ((module) => {
 
-module.exports = eval("require")("./wait");
+const versionStringRx = /\d+(\.\d+){2,}/ig;
+
+let setVersion = function (fileContent, version) {
+  if (!version || !version.match(versionStringRx)) {
+    throw new Error('Invalid version string');
+  }
+
+  const lines = fileContent.split('\n');
+  const versionLine = lines.find(l => l.match(/^version\s*=\s*/ig));
+  let currentVersion = versionLine.match(versionStringRx);
+  currentVersion = currentVersion && currentVersion[0];
+  return lines.map(l => {
+    return l === versionLine ? versionLine.replace(currentVersion, version) : l;
+  }).join('\n');
+};
+
+module.exports = setVersion;
 
 
 /***/ }),
@@ -1975,21 +1991,16 @@ module.exports = require("util");
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
+const fs = __nccwpck_require__(747);
 const core = __nccwpck_require__(186);
-const wait = __nccwpck_require__(653);
-
+const setVersion = __nccwpck_require__(212);
 
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    const ms = core.getInput('milliseconds');
-    core.info(`Waiting ${ms} milliseconds ...`);
-
-    core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
-    core.info((new Date()).toTimeString());
-
-    core.setOutput('time', new Date().toTimeString());
+    const cargoFile = core.getInput('cargoFile');
+    const version = core.getInput('version');
+    core.setOutput('content', setVersion(fs.readFileSync(cargoFile).toString(), version));
   } catch (error) {
     core.setFailed(error.message);
   }
