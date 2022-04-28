@@ -1852,6 +1852,8 @@ exports.debug = debug; // for test
 const versionStringRx = /\d+(\.\d+){2,}/ig;
 
 let setVersion = function (fileContent, version, buildNumberOnly = false) {
+  console.log('>>>>>>>>>>>>>> running setVersion with', version, buildNumberOnly);
+
   if (!buildNumberOnly) {
     if (!version || !version.match(versionStringRx)) {
       throw new Error('Invalid version string');
@@ -2013,6 +2015,7 @@ async function run() {
     const cargoFile = core.getInput('cargoFile');
     const version = core.getInput('version');
     const buildNumberOnly = core.getInput('buildNumberOnly');
+    core.info(`Running with ${cargoFile} ${version} ${buildNumberOnly}`);
     core.setOutput('content', setVersion(fs.readFileSync(cargoFile).toString(), version, buildNumberOnly));
   } catch (error) {
     core.setFailed(error.message);
