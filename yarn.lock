@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@actions/core@^1.2.5":
+"@actions/core@^1.7.0":
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.7.0.tgz#f179a5a0bf5c1102d89b8cf1712825e763feaee4"
   integrity sha512-7fPSS7yKOhTpgLMbw7lBLc1QJWvJBBAgyTX2PEhagWcKK8t0H8AKCoPMfnrHqIm5cRYH4QFPqD1/ruhuUE7YcQ==
@@ -544,11 +544,6 @@
   dependencies:
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
-
-"@ltd/j-toml@^1.30.0":
-  version "1.30.0"
-  resolved "https://registry.yarnpkg.com/@ltd/j-toml/-/j-toml-1.30.0.tgz#13e9f80ec4e3fbed585b6703e235f0ea54726f5e"
-  integrity sha512-RMylvTbZiU9B5bx+bZmPtacKobjMJOJBDxn3TPraEe4bz/gG0ZpVKCedDqLgrDYIlCSxUutoFan1IJ2EHxvo3Q==
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.3"
