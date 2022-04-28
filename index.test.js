@@ -11,6 +11,12 @@ test('setVersion works', () => {
 
   expect(setVersion(`
 version = "0.24.0"
+`, '1.0.1', false)).toEqual(`
+version = "1.0.1"
+`);
+
+  expect(setVersion(`
+version = "0.24.0"
 `, '0.24.4778923')).toEqual(`
 version = "0.24.4778923"
 `);
